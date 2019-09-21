@@ -9,6 +9,8 @@ use Barnacle\RegistrationInterface;
 use Bone\Mvc\View\PlatesEngine;
 use BoneMvc\Mail\Service\MailService;
 use Zend\Mail\Transport\Sendmail;
+use Zend\Mail\Transport\Smtp;
+use Zend\Mail\Transport\SmtpOptions;
 
 class MailPackage implements RegistrationInterface
 {
@@ -21,10 +23,19 @@ class MailPackage implements RegistrationInterface
             $view = $c->get(PlatesEngine::class);
             $mailService = new MailService($view);
             $transport = new Sendmail();
+            
             if ($c->has('mail')) {
                 $settings = $c->get('mail');
-                $transport = $settings['transport'] ?? new Sendmail();
+                
+                if (isset($settings['name'], $settings['host'], $settings['port'])) {
+                    $options = new SmtpOptions();
+                    $options->setHost($settings['host']);
+                    $options->setName($settings['name']);
+                    $options->setPort($settings['port']);
+                    $transport = new Smtp($options);
+                }
             }
+            
             $mailService->setTransport($transport);
 
             return $mailService;
