@@ -21,3 +21,16 @@ return [
     // ...
 ];
 ```
+Add a `config/mail.php` in the config folder. 
+```php
+<?php
+
+// the docker dev box uses these Mailhog settings
+return [
+    'mail' => [
+        'name' => 'mail', // or 127.0.0.1 etc
+        'host' => 'mail', // or localhost etc
+        'port' => 1025, // or 25
+    ],
+];
+```
