@@ -7,6 +7,8 @@ namespace BoneMvc\Mail;
 use Barnacle\Container;
 use Barnacle\RegistrationInterface;
 use Bone\Mvc\View\PlatesEngine;
+use Bone\Server\Environment;
+use Bone\Server\SiteConfig;
 use BoneMvc\Mail\Service\MailService;
 use Zend\Mail\Transport\Sendmail;
 use Zend\Mail\Transport\Smtp;
@@ -21,17 +23,15 @@ class MailPackage implements RegistrationInterface
     {
         $c[MailService::class] = $c->factory(function (Container $c) {
             $view = $c->get(PlatesEngine::class);
-            $mailService = new MailService($view);
+            $siteConfig = $c->get(SiteConfig::class);
+            $mailService = new MailService($view, $siteConfig);
             $transport = new Sendmail();
             
             if ($c->has('mail')) {
                 $settings = $c->get('mail');
                 
                 if (isset($settings['name'], $settings['host'], $settings['port'])) {
-                    $options = new SmtpOptions();
-                    $options->setHost($settings['host']);
-                    $options->setName($settings['name']);
-                    $options->setPort($settings['port']);
+                    $options = new SmtpOptions($settings);
                     $transport = new Smtp($options);
                 }
             }

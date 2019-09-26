@@ -3,6 +3,7 @@
 namespace BoneMvc\Mail\Service;
 
 use Bone\Mvc\View\PlatesEngine;
+use Bone\Server\SiteConfig;
 use BoneMvc\Mail\EmailMessage;
 use Zend\Mail\Transport\TransportInterface;
 use Zend\Mime\Message;
@@ -12,6 +13,9 @@ class MailService
 {
     /** @var PlatesEngine $view */
     private $view;
+    
+    /** @var SiteConfig $siteConfig */
+    private $siteConfig;
 
     /** @var TransportInterface $transport */
     private $transport;
@@ -20,9 +24,10 @@ class MailService
      * MailService constructor.
      * @param PlatesEngine $view
      */
-    public function __construct(PlatesEngine $view)
+    public function __construct(PlatesEngine $view, SiteConfig $siteConfig)
     {
         $this->view = $view;
+        $this->siteConfig = $siteConfig;
     }
 
     /**
@@ -49,6 +54,7 @@ class MailService
      */
     public function sendEmail(EmailMessage $message): bool
     {
+        $message->setFrom($this->siteConfig->getServerEmail());
         $body = $this->renderEmail($message->getTemplate(), $message->getViewData());
         $msg = new Part($body);
         $msg->type = 'text/html';
@@ -58,5 +64,13 @@ class MailService
         $this->transport->send($message);
 
         return true;
+    }
+
+    /**
+     * @return SiteConfig
+     */
+    public function getSiteConfig(): SiteConfig
+    {
+        return $this->siteConfig;
     }
 }

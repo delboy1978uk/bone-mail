@@ -7,10 +7,10 @@ use Zend\Mail\Message;
 class EmailMessage extends Message
 {
     /** @var array $viewData */
-    private $viewData;
+    private $viewData= [];
 
     /** @var string $template */
-    private $template;
+    private $template = '';
 
     /**
      * @return array
