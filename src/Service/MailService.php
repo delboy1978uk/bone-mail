@@ -4,31 +4,23 @@ namespace BoneMvc\Mail\Service;
 
 use Bone\Mvc\View\PlatesEngine;
 use Bone\Server\SiteConfig;
+use Bone\Server\SiteConfigAwareInterface;
+use Bone\Traits\HasSiteConfigTrait;
+use Bone\Traits\HasViewTrait;
+use Bone\View\ViewAwareInterface;
 use BoneMvc\Mail\EmailMessage;
 use Zend\Mail\Transport\TransportInterface;
 use Zend\Mime\Message;
 use Zend\Mime\Part;
 
-class MailService
+class MailService implements SiteConfigAwareInterface, ViewAwareInterface
 {
-    /** @var PlatesEngine $view */
-    private $view;
-    
-    /** @var SiteConfig $siteConfig */
-    private $siteConfig;
+
+    use HasSiteConfigTrait;
+    use HasViewTrait;
 
     /** @var TransportInterface $transport */
     private $transport;
-
-    /**
-     * MailService constructor.
-     * @param PlatesEngine $view
-     */
-    public function __construct(PlatesEngine $view, SiteConfig $siteConfig)
-    {
-        $this->view = $view;
-        $this->siteConfig = $siteConfig;
-    }
 
     /**
      * @param TransportInterface $transport
@@ -64,13 +56,5 @@ class MailService
         $this->transport->send($message);
 
         return true;
-    }
-
-    /**
-     * @return SiteConfig
-     */
-    public function getSiteConfig(): SiteConfig
-    {
-        return $this->siteConfig;
     }
 }

@@ -24,7 +24,7 @@ class MailPackage implements RegistrationInterface
         $c[MailService::class] = $c->factory(function (Container $c) {
             $view = $c->get(PlatesEngine::class);
             $siteConfig = $c->get(SiteConfig::class);
-            $mailService = new MailService($view, $siteConfig);
+            $mailService = new MailService();
             $transport = new Sendmail();
             
             if ($c->has('mail')) {
@@ -36,6 +36,8 @@ class MailPackage implements RegistrationInterface
                 }
             }
             
+            $mailService->setView($view);
+            $mailService->setSiteConfig($siteConfig);
             $mailService->setTransport($transport);
 
             return $mailService;
