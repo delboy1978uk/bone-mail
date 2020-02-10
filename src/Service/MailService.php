@@ -9,9 +9,9 @@ use Bone\Traits\HasSiteConfigTrait;
 use Bone\Traits\HasViewTrait;
 use Bone\View\ViewAwareInterface;
 use BoneMvc\Mail\EmailMessage;
-use Zend\Mail\Transport\TransportInterface;
-use Zend\Mime\Message;
-use Zend\Mime\Part;
+use Laminas\Mail\Transport\TransportInterface;
+use Laminas\Mime\Message;
+use Laminas\Mime\Part;
 
 class MailService implements SiteConfigAwareInterface, ViewAwareInterface
 {

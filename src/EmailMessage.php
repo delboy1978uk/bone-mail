@@ -2,7 +2,7 @@
 
 namespace BoneMvc\Mail;
 
-use Zend\Mail\Message;
+use Laminas\Mail\Message;
 
 class EmailMessage extends Message
 {

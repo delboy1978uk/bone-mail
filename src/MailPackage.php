@@ -10,9 +10,9 @@ use Bone\Mvc\View\PlatesEngine;
 use Bone\Server\Environment;
 use Bone\Server\SiteConfig;
 use BoneMvc\Mail\Service\MailService;
-use Zend\Mail\Transport\Sendmail;
-use Zend\Mail\Transport\Smtp;
-use Zend\Mail\Transport\SmtpOptions;
+use Laminas\Mail\Transport\Sendmail;
+use Laminas\Mail\Transport\Smtp;
+use Laminas\Mail\Transport\SmtpOptions;
 
 class MailPackage implements RegistrationInterface
 {
