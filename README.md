@@ -34,3 +34,23 @@ return [
     ],
 ];
 ```
+### sending email
+Any classes that need set up with the `BoneMvc\Mail\Service\MailService` can have it injected via your package class
+(remember and add a use statement with the full class) :
+```php
+$mailService = $c->get(MailService::class);
+```
+With regards to the `setTemplate()` method, refer to the `league/plates` docs, and `delboy1978uk/bone-user` for an 
+example. Variables set in `setViewData()` go to your view template.
+```php
+$mail = new EmailMessage();
+$mail->setTo($email);
+$mail->setSubject($subject);
+$mail->setTemplate('email.user::user_registration/change_email');
+$mail->setViewData([
+    'siteUrl' => $env->getSiteURL(),
+    'logo' => $this->getSiteConfig()->getEmailLogo(),
+    'resetLink' => '/user/reset-email/' . $email . '/' . $newEmail . '/' . $token,
+]);
+$this->mailService->sendEmail($mail);
+```
