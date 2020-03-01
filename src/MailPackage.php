@@ -6,7 +6,7 @@ namespace BoneMvc\Mail;
 
 use Barnacle\Container;
 use Barnacle\RegistrationInterface;
-use Bone\Mvc\View\PlatesEngine;
+use Bone\View\PlatesEngine;
 use Bone\Server\Environment;
 use Bone\Server\SiteConfig;
 use BoneMvc\Mail\Service\MailService;
