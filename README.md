@@ -1,5 +1,5 @@
 # mail
-Mail package for Bone Mvc Framework
+Mail package for Bone Framework
 ## installation
 Use Composer
 ```
@@ -11,7 +11,7 @@ Simply add to the `config/packages.php`
 <?php
 
 // use statements here
-use BoneMvc\Mail\MailPackage;
+use Bone\Mail\MailPackage;
 
 return [
     'packages' => [
@@ -35,7 +35,7 @@ return [
 ];
 ```
 ### sending email
-Any classes that need set up with the `BoneMvc\Mail\Service\MailService` can have it injected via your package class
+Any classes that need set up with the `Bone\Mail\Service\MailService` can have it injected via your package class
 (remember and add a use statement with the full class) :
 ```php
 $mailService = $c->get(MailService::class);

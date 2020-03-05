@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace BoneMvc\Mail;
+namespace Bone\Mail;
 
 use Barnacle\Container;
 use Barnacle\RegistrationInterface;
 use Bone\View\ViewEngine;
 use Bone\Server\Environment;
 use Bone\Server\SiteConfig;
-use BoneMvc\Mail\Service\MailService;
+use Bone\Mail\Service\MailService;
 use Laminas\Mail\Transport\Sendmail;
 use Laminas\Mail\Transport\Smtp;
 use Laminas\Mail\Transport\SmtpOptions;

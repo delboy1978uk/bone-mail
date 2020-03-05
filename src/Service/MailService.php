@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace BoneMvc\Mail\Service;
+namespace Bone\Mail\Service;
 
 use Bone\View\ViewEngine;
 use Bone\Server\SiteConfig;
@@ -8,7 +8,7 @@ use Bone\Server\SiteConfigAwareInterface;
 use Bone\Traits\HasSiteConfigTrait;
 use Bone\Traits\HasViewTrait;
 use Bone\View\ViewAwareInterface;
-use BoneMvc\Mail\EmailMessage;
+use Bone\Mail\EmailMessage;
 use Laminas\Mail\Transport\TransportInterface;
 use Laminas\Mime\Message;
 use Laminas\Mime\Part;

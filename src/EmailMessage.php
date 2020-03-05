@@ -1,6 +1,6 @@
 <?php
 
-namespace BoneMvc\Mail;
+namespace Bone\Mail;
 
 use Laminas\Mail\Message;
 
