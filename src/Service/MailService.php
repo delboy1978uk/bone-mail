@@ -2,7 +2,7 @@
 
 namespace BoneMvc\Mail\Service;
 
-use Bone\View\PlatesEngine;
+use Bone\View\ViewEngine;
 use Bone\Server\SiteConfig;
 use Bone\Server\SiteConfigAwareInterface;
 use Bone\Traits\HasSiteConfigTrait;

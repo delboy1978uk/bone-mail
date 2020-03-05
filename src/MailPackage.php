@@ -6,7 +6,7 @@ namespace BoneMvc\Mail;
 
 use Barnacle\Container;
 use Barnacle\RegistrationInterface;
-use Bone\View\PlatesEngine;
+use Bone\View\ViewEngine;
 use Bone\Server\Environment;
 use Bone\Server\SiteConfig;
 use BoneMvc\Mail\Service\MailService;
@@ -22,7 +22,7 @@ class MailPackage implements RegistrationInterface
     public function addToContainer(Container $c)
     {
         $c[MailService::class] = $c->factory(function (Container $c) {
-            $view = $c->get(PlatesEngine::class);
+            $view = $c->get(ViewEngine::class);
             $siteConfig = $c->get(SiteConfig::class);
             $mailService = new MailService();
             $transport = new Sendmail();
