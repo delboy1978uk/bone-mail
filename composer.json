@@ -1,24 +1,32 @@
 {
-  "name": "delboy1978uk\/bone-mail",
-  "description": "Mail package for Bone Framework",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Derek Stephen McLean",
-      "email": "delboy1978uk@gmail.com"
+    "name": "delboy1978uk/bone-mail",
+    "description": "Mail package for Bone Framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Derek Stephen McLean",
+            "email": "delboy1978uk@gmail.com"
+        }
+    ],
+    "require": {
+        "delboy1978uk/bone": "^3.0",
+        "laminas/laminas-mail": "^2.10",
+        "laminas/laminas-servicemanager": "^3.3"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master",
+        "codeception/codeception": "^4.1",
+        "codeception/module-phpbrowser": "^1.0.0",
+        "codeception/module-asserts": "^1.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bone\\Mail\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Bone\\Test\\Mail\\": "tests/unit/"
+        }
     }
-  ],
-  "require": {
-    "delboy1978uk/bone": "^3.0",
-    "laminas/laminas-mail": "^2.10",
-    "laminas/laminas-servicemanager": "^3.3"
-  },
-  "require-dev": {
-    "roave\/security-advisories": "dev-master"
-  },
-  "autoload": {
-    "psr-4": {
-      "Bone\\Mail\\": "src/"
-    }
-  }
 }

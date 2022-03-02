@@ -26,37 +26,21 @@ class MailPackage implements RegistrationInterface
             $siteConfig = $c->get(SiteConfig::class);
             $mailService = new MailService();
             $transport = new Sendmail();
-            
+
             if ($c->has('mail')) {
                 $settings = $c->get('mail');
-                
+
                 if (isset($settings['name'], $settings['host'], $settings['port'])) {
                     $options = new SmtpOptions($settings);
                     $transport = new Smtp($options);
                 }
             }
-            
+
             $mailService->setView($view);
             $mailService->setSiteConfig($siteConfig);
             $mailService->setTransport($transport);
 
             return $mailService;
         });
-    }
-
-    /**
-     * @return string
-     */
-    public function getEntityPath(): string
-    {
-        return '';
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasEntityPath(): bool
-    {
-        return false;
     }
 }
