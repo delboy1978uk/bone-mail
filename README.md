@@ -1,3 +1,6 @@
+[![Latest Stable Version](https://poser.pugx.org/delboy1978uk/bone-mail/v/stable)](https://packagist.org/packages/delboy1978uk/bone-mail) [![Total Downloads](https://poser.pugx.org/delboy1978uk/bone/downloads)](https://packagist.org/packages/delboy1978uk/bone) [![Latest Unstable Version](https://poser.pugx.org/delboy1978uk/bone-mail/v/unstable)](https://packagist.org/packages/delboy1978uk/bone-mail) [![License](https://poser.pugx.org/delboy1978uk/bone-mail/license)](https://packagist.org/packages/delboy1978uk/bone-mail)<br />
+![build status](https://github.com/delboy1978uk/bone-mail/actions/workflows/master.yml/badge.svg) [![Code Coverage](https://scrutinizer-ci.com/g/delboy1978uk/bone-mail/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/delboy1978uk/bone-mail/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/delboy1978uk/bone-mail/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/delboy1978uk/bone-mail/?branch=master)<br />
+
 # mail
 Mail package for Bone Framework
 ## installation
