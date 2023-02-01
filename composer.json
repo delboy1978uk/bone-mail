@@ -10,7 +10,7 @@
     ],
     "require": {
         "delboy1978uk/bone": "^3.0",
-        "laminas/laminas-mail": "^2.10",
+        "laminas/laminas-mail": "^2.22",
         "laminas/laminas-servicemanager": "^3.3"
     },
     "require-dev": {
