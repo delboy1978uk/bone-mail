@@ -28,5 +28,10 @@
         "psr-4": {
             "Bone\\Test\\Mail\\": "tests/unit/"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "phpro/grumphp": true
+        }
     }
 }
