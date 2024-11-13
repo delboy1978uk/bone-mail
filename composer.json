@@ -11,7 +11,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": "^8.2",
-        "delboy1978uk/bone": "^3.9",
+        "boneframework/bone": "^3.11",
         "laminas/laminas-mail": "^2.22",
         "laminas/laminas-servicemanager": "^3.3"
     },
