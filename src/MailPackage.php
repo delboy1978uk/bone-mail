@@ -24,7 +24,7 @@ class MailPackage implements RegistrationInterface
         $c[MailService::class] = $c->factory(function (Container $c) {
             $view = $c->get(ViewEngine::class);
             $siteConfig = $c->get(SiteConfig::class);
-            $dsn = getenv('MAILER_DSN') ?? 'sedmail://default';
+            $dsn = getenv('MAILER_DSN') ?: 'sendmail://default';
             $mailService = new MailService();
             $transport = Transport::fromDsn($dsn);
             $mailer = new Mailer($transport);
