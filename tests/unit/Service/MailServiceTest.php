@@ -19,6 +19,8 @@ class MailServiceTest extends Unit
         $message = new EmailMessage();
         $message->setTemplate('some::template');
         $message->setViewData([]);
+        $message->to('man@work.com');
+        $message->from('man@home.com');
         $view = $this->makeEmpty(ViewEngine::class, [
             'render' => '<html>An email!</html>',
         ]);
