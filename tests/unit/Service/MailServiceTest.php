@@ -7,6 +7,7 @@ use Bone\Mail\Service\MailService;
 use Bone\Server\SiteConfig;
 use Bone\View\ViewEngine;
 use Codeception\Test\Unit;
+use Symfony\Component\Mailer\Exception\TransportException;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\Transport;
 
@@ -31,6 +32,7 @@ class MailServiceTest extends Unit
         $mail->setSiteConfig($config);
         $mail->setView($view);
         $mail->setMailer($mailer);
+        $this->expectException(TransportException::class);
         $mail->sendEmail($message);
     }
 }
