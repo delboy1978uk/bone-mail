@@ -12,8 +12,6 @@
     "require": {
         "php": "^8.2",
         "boneframework/bone": "^3.11",
-        "laminas/laminas-mail": "^2.22",
-        "laminas/laminas-servicemanager": "^3.3",
         "symfony/mailer": "^7.3"
     },
     "require-dev": {
