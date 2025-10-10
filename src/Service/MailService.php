@@ -9,9 +9,11 @@ use Bone\Server\Traits\HasSiteConfigTrait;
 use Bone\View\Traits\HasViewTrait;
 use Bone\View\ViewAwareInterface;
 use Bone\Mail\EmailMessage;
-use Laminas\Mail\Transport\TransportInterface;
+
 use Laminas\Mime\Message;
 use Laminas\Mime\Part;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport\TransportInterface;
 
 class MailService implements SiteConfigAwareInterface, ViewAwareInterface
 {
@@ -19,42 +21,26 @@ class MailService implements SiteConfigAwareInterface, ViewAwareInterface
     use HasSiteConfigTrait;
     use HasViewTrait;
 
-    /** @var TransportInterface $transport */
-    private $transport;
+    private Mailer $mailer;
 
-    /**
-     * @param TransportInterface $transport
-     */
-    public function setTransport(TransportInterface $transport): void
+    public function setMailer(Mailer $mailer): void
     {
-        $this->transport = $transport;
+        $this->mailer = $mailer;
     }
 
-    /**
-     * @param string $template
-     * @param array $data
-     * @return string
-     */
     private function renderEmail(string $template, array $data): string
     {
         return $this->view->render($template, $data);
     }
 
-    /**
-     * @param EmailMessage $message
-     * @return bool
-     */
     public function sendEmail(EmailMessage $message): bool
     {
         $config = $this->getSiteConfig();
         $message->setFrom($config->getServerEmail(), $config->getCompany());
         $body = $this->renderEmail($message->getTemplate(), $message->getViewData());
-        $msg = new Part($body);
-        $msg->type = 'text/html';
-        $mime = new Message();
-        $mime->setParts([$msg]);
-        $message->setBody($mime);
-        $this->transport->send($message);
+        $message->html($body);
+        $mailer = new Mailer($this->transport);
+        $mailer->send($message);
 
         return true;
     }

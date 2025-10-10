@@ -13,32 +13,24 @@ use Bone\Mail\Service\MailService;
 use Laminas\Mail\Transport\Sendmail;
 use Laminas\Mail\Transport\Smtp;
 use Laminas\Mail\Transport\SmtpOptions;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport;
 
 class MailPackage implements RegistrationInterface
 {
-    /**
-     * @param Container $c
-     */
     public function addToContainer(Container $c)
     {
         $c[MailService::class] = $c->factory(function (Container $c) {
             $view = $c->get(ViewEngine::class);
             $siteConfig = $c->get(SiteConfig::class);
+            $dsn = \getenv('MAILER_DSN');
             $mailService = new MailService();
-            $transport = new Sendmail();
-
-            if ($c->has('mail')) {
-                $settings = $c->get('mail');
-
-                if (isset($settings['name'], $settings['host'], $settings['port'])) {
-                    $options = new SmtpOptions($settings);
-                    $transport = new Smtp($options);
-                }
-            }
-
+            $transport = Transport::fromDsn($dsn);
+            $mailer = new Mailer($transport);
             $mailService->setView($view);
             $mailService->setSiteConfig($siteConfig);
-            $mailService->setTransport($transport);
+            $mailer  = new Mailer($transport);
+            $mailService->setMailer($mailer);
 
             return $mailService;
         });

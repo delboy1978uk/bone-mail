@@ -2,45 +2,47 @@
 
 namespace Bone\Mail;
 
-use Laminas\Mail\Message;
+use Symfony\Component\Mime\Email;
 
-class EmailMessage extends Message
+class EmailMessage extends Email
 {
-    /** @var array $viewData */
-    private $viewData= [];
+    private array $viewData= [];
+    private string $template = '';
 
-    /** @var string $template */
-    private $template = '';
-
-    /**
-     * @return array
-     */
-    public function getViewData()
+    public function getViewData(): array
     {
         return $this->viewData;
     }
 
-    /**
-     * @param array $viewData
-     */
     public function setViewData(array $viewData): void
     {
         $this->viewData = $viewData;
     }
 
-    /**
-     * @return string
-     */
     public function getTemplate(): string
     {
         return $this->template;
     }
 
-    /**
-     * @param string $template
-     */
     public function setTemplate(string $template): void
     {
         $this->template = $template;
+    }
+
+    public function setFrom(string $email, ?string $name = null): void
+    {
+        $from = $name ? [$email => $name] : $email;
+        $this->from($from);
+    }
+
+    public function setTo(string $email, ?string $name = null): void
+    {
+        $to = $name ? [$email => $name] : $email;
+        $this->to($to);
+    }
+
+    public function setSubject(string $subject): void
+    {
+        $this->subject($subject);
     }
 }
