@@ -32,7 +32,7 @@ class MailServiceTest extends Unit
         $mail->setSiteConfig($config);
         $mail->setView($view);
         $mail->setMailer($mailer);
-        $this->expectException(TransportException::class);
+        $this->expectException(TransportException::class); // on Github Actions, no sendmail
         $mail->sendEmail($message);
     }
 }
