@@ -8,12 +8,14 @@ use Bone\Server\SiteConfig;
 use Bone\View\ViewEngine;
 use Codeception\Test\Unit;
 use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport;
 
 class MailServiceTest extends Unit
 {
     public function testMailService()
     {
-        $mailer = $this->makeEmpty(Mailer::class);
+        $transport = $this->createMock(Transport::class);
+        $mailer = new Mailer($transport);
         $message = $this->makeEmpty(EmailMessage::class, [
             'getTemplate' => 'some::template',
             'getViewData' => [],
