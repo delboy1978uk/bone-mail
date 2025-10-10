@@ -16,10 +16,9 @@ class MailServiceTest extends Unit
     {
         $transport = Transport::fromDsn('sendmail://default');
         $mailer = new Mailer($transport);
-        $message = $this->makeEmpty(EmailMessage::class, [
-            'getTemplate' => 'some::template',
-            'getViewData' => [],
-        ]);
+        $message = new EmailMessage();
+        $message->setTemplate('some::template');
+        $message->setViewData([]);
         $view = $this->makeEmpty(ViewEngine::class, [
             'render' => '<html>An email!</html>',
         ]);
