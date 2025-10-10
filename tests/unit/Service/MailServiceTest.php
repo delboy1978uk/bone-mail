@@ -14,7 +14,7 @@ class MailServiceTest extends Unit
 {
     public function testMailService()
     {
-        $transport = Transport::fromDsn('netive://default');
+        $transport = Transport::fromDsn('sendmail://default');
         $mailer = new Mailer($transport);
         $message = $this->makeEmpty(EmailMessage::class, [
             'getTemplate' => 'some::template',
