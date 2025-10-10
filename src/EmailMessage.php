@@ -2,6 +2,7 @@
 
 namespace Bone\Mail;
 
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 
 class EmailMessage extends Email
@@ -29,9 +30,9 @@ class EmailMessage extends Email
         $this->template = $template;
     }
 
-    public function setFrom(string $email, ?string $name = null): void
+    public function setFrom(string $email, string $name = ''): void
     {
-        $from = $name ? [$email => $name] : $email;
+        $from = new Address($email, $name);
         $this->from($from);
     }
 
