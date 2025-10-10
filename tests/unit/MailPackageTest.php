@@ -14,7 +14,7 @@ class MailPackageTest extends Unit
 {
     public function testMailPackage()
     {
-        putenv('MAILER_DSN=sendmail://default');
+        $_ENV['MAILER_DSN'] = 'sendmail://default';
         $c = new Container();
         $c['mail'] = [
             'name' => 'mail',
