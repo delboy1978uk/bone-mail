@@ -20,11 +20,13 @@ class MailServiceTest extends Unit
         $message->setTemplate('some::template');
         $message->setViewData([]);
         $message->to('man@work.com');
-        $message->from('man@home.com');
         $view = $this->makeEmpty(ViewEngine::class, [
             'render' => '<html>An email!</html>',
         ]);
-        $config = $this->makeEmpty(SiteConfig::class);
+        $config = $this->makeEmpty(SiteConfig::class, [
+            'getServerEmail' => 'noreply@site.com',
+            'getCompany' => 'Sender McSendface',
+        ]);
         $mail = new MailService();
         $mail->setSiteConfig($config);
         $mail->setView($view);
