@@ -24,18 +24,9 @@ return [
     // ...
 ];
 ```
-Add a `config/mail.php` in the config folder. 
-```php
-<?php
-
-// the docker dev box uses these Mailhog settings
-return [
-    'mail' => [
-        'name' => 'mail', // or 127.0.0.1 etc
-        'host' => 'mail', // or localhost etc
-        'port' => 1025, // or 25
-    ],
-];
+Add the following to your `.env` file. See Symfony Mailer docs.
+```dotenv
+MAILER_DSN=smtp://mail:1025
 ```
 ### sending email
 Any classes that need set up with the `Bone\Mail\Service\MailService` can have it injected via your package class

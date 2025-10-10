@@ -15,6 +15,7 @@ use Laminas\Mail\Transport\Smtp;
 use Laminas\Mail\Transport\SmtpOptions;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\Transport;
+use function getenv;
 
 class MailPackage implements RegistrationInterface
 {
@@ -23,7 +24,7 @@ class MailPackage implements RegistrationInterface
         $c[MailService::class] = $c->factory(function (Container $c) {
             $view = $c->get(ViewEngine::class);
             $siteConfig = $c->get(SiteConfig::class);
-            $dsn = \getenv('MAILER_DSN');
+            $dsn = getenv('MAILER_DSN');
             $mailService = new MailService();
             $transport = Transport::fromDsn($dsn);
             $mailer = new Mailer($transport);
