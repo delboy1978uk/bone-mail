@@ -39,8 +39,7 @@ class MailService implements SiteConfigAwareInterface, ViewAwareInterface
         $message->setFrom($config->getServerEmail(), $config->getCompany());
         $body = $this->renderEmail($message->getTemplate(), $message->getViewData());
         $message->html($body);
-        $mailer = new Mailer($this->transport);
-        $mailer->send($message);
+        $this->mailer->send($message);
 
         return true;
     }
