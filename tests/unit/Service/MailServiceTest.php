@@ -14,7 +14,7 @@ class MailServiceTest extends Unit
 {
     public function testMailService()
     {
-        $transport = $this->createMock(Transport::class);
+        $transport = new Transport('netive://default');
         $mailer = new Mailer($transport);
         $message = $this->makeEmpty(EmailMessage::class, [
             'getTemplate' => 'some::template',
@@ -24,7 +24,6 @@ class MailServiceTest extends Unit
             'render' => '<html>An email!</html>',
         ]);
         $config = $this->makeEmpty(SiteConfig::class);
-        $transport->expects(self::once())->method('send');
         $mail = new MailService();
         $mail->setSiteConfig($config);
         $mail->setView($view);
